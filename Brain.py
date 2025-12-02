@@ -1,47 +1,58 @@
+def enter_number():
+    while True:
+        try:
+            number = float(input("Enter your number: "))
+            return number
+        except ValueError:
+            print("That's not a number! Try again.")
+
+
 class Calculator:
     def __init__(self):
-        calculate = 1
-        self.output = self.enter_number()
-        while calculate:
+        self.output = 0.0
+
+    def run(self):
+        while True:
             print("\nYour number is:", self.output,
                   "\n\nWhat operation do you want to perform on your number?\n"
                   "1) Addition\n2) Subtraction\n3) Multiplication\n"
                   "4) Division\n5) Change the number\n6) Leave the app")
             operation = input()
             if operation == "1":
-                self.addition()
+                self.__addition()
             elif operation == "2":
-                self.subtraction()
+                self.__subtraction()
             elif operation == "3":
-                self.multiplication()
+                self.__multiplication()
             elif operation == "4":
-                self.division()
+                self.__division()
             elif operation == "5":
-                self.output = self.enter_number()
+                self.output = enter_number()
             elif operation == "6":
-                calculate = 0
+                print("\n You're leaving the calculator. Goodbye!")
+                break
             else:
                 print("That is not an option. Try again.")
 
-    def addition(self):
+    def __addition(self):
         print("What number do you want to add?")
-        number = self.enter_number()
+        number = enter_number()
         self.output = self.output + number
 
-    def subtraction(self):
+    def __subtraction(self):
         print("What number do you want to subtract?")
-        number = self.enter_number()
+        number = enter_number()
         self.output = self.output - number
 
-    def multiplication(self):
+    def __multiplication(self):
         print("What number do you want to multiply by?")
-        number = self.enter_number()
+        number = enter_number()
         self.output = self.output * number
 
-    def division(self):
+    def __division(self):
         print("What number do you want to divide by?")
         while True:
-            number = self.enter_number()
+            number = enter_number()
             if number != 0:
                 break
             else:
@@ -49,19 +60,10 @@ class Calculator:
         self.output = self.output / number
 
 
-    def enter_number(self):
-        while True:
-            try:
-                number = float(input("Enter your number: "))
-                return number
-            except ValueError:
-                print("That's not a number! Try again.")
-
-
-
 def main():
     print("\nWelcome to the Brain!\nLets start calculating!\n")
-    Calculator()
+    calc = Calculator()
+    calc.run()
 
 
 if __name__ == '__main__':
