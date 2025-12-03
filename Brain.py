@@ -1,7 +1,7 @@
 def enter_number():
     while True:
         try:
-            number = float(input("Enter value: "))
+            number = float(input("Enter your number: "))
             return number
         except ValueError:
             print("That's not a number! Try again.")
@@ -12,20 +12,23 @@ class Calculator:
         self.output = 0.0
         self.running = True
         self.outputs = []
-        self.operations = {1:self._addition,
-                           2:self._subtraction,
-                           3:self._multiplication,
-                           4:self._division,
-                           5:lambda: setattr(self,'output',enter_number()),
-                           6:lambda: setattr(self,'running',False)}
+        self.operations = {"1":self._addition,
+                           "2":self._subtraction,
+                           "3":self._multiplication,
+                           "4":self._division,
+                           "5":self._power,
+                           "6":self._root,
+                           "7":lambda: setattr(self,'output',enter_number()),
+                           "8":lambda: setattr(self,'running',False)}
 
     def run(self):
         while self.running:
             print("\nYour number is:", self.output,
                   "\n\nWhat operation do you want to perform on your number?\n"
                   "1) Addition\n2) Subtraction\n3) Multiplication\n"
-                  "4) Division\n5) Change the number\n6) Leave the app")
-            operation = int(enter_number())
+                  "4) Division\n5) Power\n6) Root\n"
+                  "7) Change the number\n8) Leave the app\n")
+            operation = input("Enter your choice: ")
             action = self.operations.get(operation)
             if action is None:
                 print("That is not an option. Try again.")
@@ -56,6 +59,22 @@ class Calculator:
             else:
                 print("You cannot divide by 0! Try again.")
         self.output = self.output / number
+
+    def _power(self):
+        print("To what power do you want to increase your number?")
+        number = enter_number()
+        self.output = self.output ** number
+
+    def _root(self):
+        print("The root of what degree do you want to use on your number?")
+        number = enter_number()
+        if self.output < 0:
+            if number % 2 == 0:
+                print("You cannot use this root on negative number!")
+                return
+            self.output = -(-self.output) ** (1/number)
+            return
+        self.output = self.output ** (1/number)
 
 
 def main():
