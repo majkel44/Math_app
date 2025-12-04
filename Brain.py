@@ -39,16 +39,19 @@ class Calculator:
         print("What number do you want to add?")
         number = enter_number()
         self.output = self.output + number
+        self.outputs.append(self.output)
 
     def _subtraction(self):
         print("What number do you want to subtract?")
         number = enter_number()
         self.output = self.output - number
+        self.outputs.append(self.output)
 
     def _multiplication(self):
         print("What number do you want to multiply by?")
         number = enter_number()
         self.output = self.output * number
+        self.outputs.append(self.output)
 
     def _division(self):
         print("What number do you want to divide by?")
@@ -59,11 +62,13 @@ class Calculator:
             else:
                 print("You cannot divide by 0! Try again.")
         self.output = self.output / number
+        self.outputs.append(self.output)
 
     def _power(self):
         print("To what power do you want to increase your number?")
         number = enter_number()
         self.output = self.output ** number
+        self.outputs.append(self.output)
 
     def _root(self):
         print("The root of what degree do you want to use on your number?")
@@ -73,8 +78,10 @@ class Calculator:
                 print("You cannot use this root on negative number!")
                 return
             self.output = -(-self.output) ** (1/number)
+            self.outputs.append(self.output)
             return
         self.output = self.output ** (1/number)
+        self.outputs.append(self.output)
 
 
 def main():
