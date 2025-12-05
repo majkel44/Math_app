@@ -19,7 +19,8 @@ class Calculator:
                            "5":self._power,
                            "6":self._root,
                            "7":lambda: setattr(self,'output',enter_number()),
-                           "8":lambda: setattr(self,'running',False)}
+                           "8":lambda: setattr(self,'running',False),
+                           "9":self._display_outputs}
 
     def run(self):
         while self.running:
@@ -27,7 +28,8 @@ class Calculator:
                   "\n\nWhat operation do you want to perform on your number?\n"
                   "1) Addition\n2) Subtraction\n3) Multiplication\n"
                   "4) Division\n5) Power\n6) Root\n"
-                  "7) Change the number\n8) Leave the app\n")
+                  "7) Change the number\n8) Leave the app\n"
+                  "9) Display history\n")
             operation = input("Enter your choice: ")
             action = self.operations.get(operation)
             if action is None:
@@ -39,16 +41,19 @@ class Calculator:
         print("What number do you want to add?")
         number = enter_number()
         self.output = self.output + number
+        self.outputs.append(self.output)
 
     def _subtraction(self):
         print("What number do you want to subtract?")
         number = enter_number()
         self.output = self.output - number
+        self.outputs.append(self.output)
 
     def _multiplication(self):
         print("What number do you want to multiply by?")
         number = enter_number()
         self.output = self.output * number
+        self.outputs.append(self.output)
 
     def _division(self):
         print("What number do you want to divide by?")
@@ -59,11 +64,13 @@ class Calculator:
             else:
                 print("You cannot divide by 0! Try again.")
         self.output = self.output / number
+        self.outputs.append(self.output)
 
     def _power(self):
         print("To what power do you want to increase your number?")
         number = enter_number()
         self.output = self.output ** number
+        self.outputs.append(self.output)
 
     def _root(self):
         print("The root of what degree do you want to use on your number?")
@@ -73,8 +80,14 @@ class Calculator:
                 print("You cannot use this root on negative number!")
                 return
             self.output = -(-self.output) ** (1/number)
+            self.outputs.append(self.output)
             return
         self.output = self.output ** (1/number)
+        self.outputs.append(self.output)
+
+    def _display_outputs(self):
+        print("\nYour previous outputs are:")
+        print(self.outputs)
 
 
 def main():
