@@ -19,7 +19,8 @@ class Calculator:
                            "5":self._power,
                            "6":self._root,
                            "7":lambda: setattr(self,'output',enter_number()),
-                           "8":lambda: setattr(self,'running',False)}
+                           "8":lambda: setattr(self,'running',False),
+                           "9":self._display_outputs}
 
     def run(self):
         while self.running:
@@ -27,7 +28,8 @@ class Calculator:
                   "\n\nWhat operation do you want to perform on your number?\n"
                   "1) Addition\n2) Subtraction\n3) Multiplication\n"
                   "4) Division\n5) Power\n6) Root\n"
-                  "7) Change the number\n8) Leave the app\n")
+                  "7) Change the number\n8) Leave the app\n"
+                  "9) Display history\n")
             operation = input("Enter your choice: ")
             action = self.operations.get(operation)
             if action is None:
@@ -82,6 +84,10 @@ class Calculator:
             return
         self.output = self.output ** (1/number)
         self.outputs.append(self.output)
+
+    def _display_outputs(self):
+        print("\nYour previous outputs are:")
+        print(self.outputs)
 
 
 def main():
