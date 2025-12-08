@@ -29,7 +29,7 @@ class Calculator(tk.Frame):
         self.running = True
         self.menu.pack_forget()
         self.pack(expand=True, fill="both")
-        square = tk.Button(self, text="Close", command=self._close)
+        square = tk.Button(self, text="Close", command=lambda: self._close(square))
         square.pack(expand=True, fill="both")
         #square.place(relwidth=0.7, relx=0.5, rely=1 / 7, anchor="n")
         # while self.running:
@@ -46,9 +46,10 @@ class Calculator(tk.Frame):
         #         continue
         #     action()
 
-    def _close(self):
+    def _close(self, master):
         self.pack_forget()
         self.menu.pack(expand=True, fill="both")
+        master.destroy()
 
     def _addition(self):
         print("What number do you want to add?")
