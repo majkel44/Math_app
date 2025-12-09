@@ -7,11 +7,11 @@ def gui_declaration(tk_root, calc):
     tk_root.title("Brain")
     tk_root.geometry("400x600")
     tk_root.resizable(False, False)
-    tk_root.configure(background="#eeeeee")
+    #tk_root.configure(bg="#2e3030")
 
-    menu = tk.Frame(master=tk_root)
+    menu = tk.Frame(master=tk_root,bg="#2e3030")
     menu.pack(expand=True, fill="both")
-    options = tk.Frame(menu, bg="#dddddd")
+    options = tk.Frame(menu, bg="#2e3030") ##1e1f1f
     options.place(relwidth=0.7, relx=0.5, rely=1/7, anchor="n")
 
     calc_button = ttk.Button(options, text="Calculator", command=calc.run, width=40)
@@ -23,7 +23,7 @@ def gui_declaration(tk_root, calc):
     dummy_button.pack(pady=y_distance)
     close_button.pack(pady=y_distance)
 
-    calc.menu = menu
+    calc.main_menu = menu
 
 def main():
     print("\nWelcome to the Brain!\nLets start calculating!\n")

@@ -27,10 +27,23 @@ class Calculator(tk.Frame):
 
     def run(self):
         self.running = True
-        self.menu.pack_forget()
+        self.main_menu.pack_forget()
         self.pack(expand=True, fill="both")
-        square = tk.Button(self, text="Close", command=lambda: self._close(square))
-        square.pack(expand=True, fill="both")
+        display = tk.Frame(self, bg="#1e1f1f",width=400, height=120)
+        options = tk.Frame(self, bg="#2e3030",width=400, height=420)
+        menu = tk.Frame(self, bg="#1e1f1f",width=400, height=60)
+        display.pack(expand=True, fill="both")
+        options.pack(expand=True, fill="both")
+        menu.pack(expand=True, fill="both")
+        display.pack_propagate(False)
+        options.pack_propagate(False)
+        menu.pack_propagate(False)
+        input_label = tk.Label(display, text="Input")
+        output_label = tk.Label(display, text="Result")
+        back_button = tk.Button(menu, text="Go back", command=self._close, borderwidth=2, relief="ridge")
+        input_label.pack(padx=15, pady=10, expand=True, fill="x")
+        output_label.pack(padx=15, pady=10, expand=True, fill="x")
+        back_button.grid(row=0, column=0, padx=15, pady=10)
         #square.place(relwidth=0.7, relx=0.5, rely=1 / 7, anchor="n")
         # while self.running:
         #     print("\nYour number is:", self.output,
@@ -46,10 +59,9 @@ class Calculator(tk.Frame):
         #         continue
         #     action()
 
-    def _close(self, master):
+    def _close(self):
         self.pack_forget()
-        self.menu.pack(expand=True, fill="both")
-        master.destroy()
+        self.main_menu.pack(expand=True, fill="both")
 
     def _addition(self):
         print("What number do you want to add?")
