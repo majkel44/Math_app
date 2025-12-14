@@ -64,6 +64,7 @@ class Calculator(tk.Frame):
         #         print("That is not an option. Try again.")
         #         continue
         #     action()
+        #     action()
 
     def _close(self):
         self.pack_forget()
