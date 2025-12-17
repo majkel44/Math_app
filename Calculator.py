@@ -29,6 +29,7 @@ class Calculator(tk.Frame):
         self.running = True
         self.main_menu.pack_forget()
         self.pack(expand=True, fill="both")
+
         display = tk.Frame(self, bg="#1e1f1f",width=400, height=120)
         options = tk.Frame(self, bg="#2e3030",width=400, height=420)
         menu = tk.Frame(self, bg="#1e1f1f",width=400, height=60)
@@ -38,33 +39,41 @@ class Calculator(tk.Frame):
         display.pack_propagate(False)
         options.pack_propagate(False)
         menu.pack_propagate(False)
-        input_label = tk.Label(display, text="Input")
-        output_label = tk.Label(display, text="Result")
-        add_button = tk.Button(options, text="+", command=self._addition, borderwidth=2, relief="raised")
-        subtract_button = tk.Button(options, text="_", command=self._subtraction, borderwidth=2, relief="raised")
-        multiply_button = tk.Button(options, text="*", command=self._multiplication, borderwidth=2, relief="raised")
-        divide_button = tk.Button(options, text="/", command=self._division, borderwidth=2, relief="raised")
-        power_button = tk.Button(options, text="^", command=self._power, borderwidth=2, relief="raised")
-        root_button = tk.Button(options, text="sqrt", command=self._root, borderwidth=2, relief="raised")
-        back_button = tk.Button(menu, text="Go back", command=self._close, borderwidth=2, relief="ridge")
+
+        display_position = tk.Frame(display, bg="#1e1f1f")
+        options_position = tk.Frame(options, bg="#2e3030")
+        menu_position = tk.Frame(menu, bg="#1e1f1f")
+
+        input_label = tk.Label(display_position, text="Input")
+        output_label = tk.Label(display_position, text="Result")
+
+        add_button = tk.Button(options_position, text="+", command=self._addition, borderwidth=2, relief="raised")
+        subtract_button = tk.Button(options_position, text="_", command=self._subtraction, borderwidth=2, relief="raised")
+        multiply_button = tk.Button(options_position, text="*", command=self._multiplication, borderwidth=2, relief="raised")
+        divide_button = tk.Button(options_position, text="/", command=self._division, borderwidth=2, relief="raised")
+        power_button = tk.Button(options_position, text="^", command=self._power, borderwidth=2, relief="raised")
+        root_button = tk.Button(options_position, text="sqrt", command=self._root, borderwidth=2, relief="raised")
+
+        history_button = tk.Button(menu_position, text="History", command=self._root, borderwidth=2, relief="raised")
+        back_button = tk.Button(menu_position, text="Go back", command=self._close, borderwidth=2, relief="ridge")
+
+        display_position.place(relx = 0.5, rely=0.4, anchor="n")
+        options_position.place(relx=0.5, rely=0.4, anchor="n")
+        menu_position.place(relx=0.5, rely=0.4, anchor="n")
+
         input_label.pack(padx=15, pady=10, expand=True, fill="x")
         output_label.pack(padx=15, pady=10, expand=True, fill="x")
-        back_button.grid(row=0, column=0, padx=15, pady=10)
-        #square.place(relwidth=0.7, relx=0.5, rely=1 / 7, anchor="n")
-        # while self.running:
-        #     print("\nYour number is:", self.output,
-        #           "\n\nWhat operation do you want to perform on your number?\n"
-        #           "1) Change the number\n2) Addition\n3) Subtraction\n"
-        #           "4) Multiplication\n5) Division\n6) Power\n"
-        #           "7) Root\n8) Display history\n"
-        #           "9) Leave the app\n")
-        #     operation = input("Enter your choice: ")
-        #     action = self.operations.get(operation)
-        #     if action is None:
-        #         print("That is not an option. Try again.")
-        #         continue
-        #     action()
-        #     action()
+
+        add_button.grid(row=0, column=0, padx=10, pady=10)
+        subtract_button.grid(row=0, column=1, padx=10, pady=10)
+        multiply_button.grid(row=1, column=0, padx=10, pady=10)
+        divide_button.grid(row=1, column=1, padx=10, pady=10)
+        power_button.grid(row=2, column=0, padx=10, pady=10)
+        root_button.grid(row=2, column=1, padx=10, pady=10)
+
+        history_button.grid(row=0, column=0, padx=10, pady=10)
+        back_button.grid(row=0, column=1, padx=15, pady=10)
+
 
     def _close(self):
         self.pack_forget()

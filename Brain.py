@@ -6,7 +6,7 @@ from tkinter import ttk
 def gui_declaration(tk_root, calc):
     tk_root.title("Brain")
     tk_root.geometry("400x600")
-    tk_root.resizable(False, False)
+    #tk_root.resizable(False, False)
     #tk_root.configure(bg="#2e3030")
 
     menu = tk.Frame(master=tk_root,bg="#2e3030")
