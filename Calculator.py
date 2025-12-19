@@ -22,30 +22,27 @@ class Calculator(tk.Frame):
                            "5":self._division,
                            "6":self._power,
                            "7":self._root,
-                           "8":self._display_outputs,
-                           "9":lambda: setattr(self,'running',False),}
+                           "8":self._display_outputs}
+                           #"9":lambda: setattr(self,'running',False),}
 
     def run(self):
-        self.running = True
+        #self.running = True
         self.main_menu.pack_forget()
         self.pack(expand=True, fill="both")
 
-        display = tk.Frame(self, bg="#1e1f1f",width=400, height=120)
-        options = tk.Frame(self, bg="#2e3030",width=400, height=420)
-        menu = tk.Frame(self, bg="#1e1f1f",width=400, height=60)
+        display = tk.Frame(self, bg="#1e1f1f")
+        options = tk.Frame(self, bg="#2e3030")
+        menu = tk.Frame(self, bg="#1e1f1f")
         display.pack(expand=True, fill="both")
         options.pack(expand=True, fill="both")
         menu.pack(expand=True, fill="both")
-        display.pack_propagate(False)
-        options.pack_propagate(False)
-        menu.pack_propagate(False)
 
         display_position = tk.Frame(display, bg="#1e1f1f")
         options_position = tk.Frame(options, bg="#2e3030")
         menu_position = tk.Frame(menu, bg="#1e1f1f")
 
         input_label = tk.Label(display_position, text="Input")
-        output_label = tk.Label(display_position, text="Result")
+        output_label = tk.Label(display_position, text="Output: " + str(self.output))
 
         add_button = tk.Button(options_position, text="+", command=self._addition, borderwidth=2, relief="raised")
         subtract_button = tk.Button(options_position, text="_", command=self._subtraction, borderwidth=2, relief="raised")
@@ -55,10 +52,10 @@ class Calculator(tk.Frame):
         root_button = tk.Button(options_position, text="sqrt", command=self._root, borderwidth=2, relief="raised")
 
         history_button = tk.Button(menu_position, text="History", command=self._root, borderwidth=2, relief="raised")
-        back_button = tk.Button(menu_position, text="Go back", command=self._close, borderwidth=2, relief="ridge")
+        back_button = tk.Button(menu_position, text="Go back", command=lambda: self._close(), borderwidth=2, relief="ridge")
 
-        display_position.place(relx = 0.5, rely=0.4, anchor="n")
-        options_position.place(relx=0.5, rely=0.4, anchor="n")
+        display_position.place(relwidth=0.7, relx = 0.5, rely=0.3, anchor="n")
+        options_position.place(relx=0.5, rely=0.2, anchor="n")
         menu_position.place(relx=0.5, rely=0.4, anchor="n")
 
         input_label.pack(padx=15, pady=10, expand=True, fill="x")
