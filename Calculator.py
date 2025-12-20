@@ -13,6 +13,7 @@ class Calculator(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         self.output = 0.0
+        self.input = ""
         self.running = True
         self.outputs = []
         self.operations = {"1":lambda: setattr(self,'output',enter_number()),
@@ -41,7 +42,7 @@ class Calculator(tk.Frame):
         options_position = tk.Frame(options, bg="#2e3030")
         menu_position = tk.Frame(menu, bg="#1e1f1f")
 
-        input_label = tk.Label(display_position, text="Input")
+        input_label = tk.Label(display_position, text="Input: " + self.input)
         output_label = tk.Label(display_position, text="Output: " + str(self.output))
 
         add_button = tk.Button(options_position, text="+", command=self._addition, borderwidth=2, relief="raised")
