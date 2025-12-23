@@ -52,6 +52,18 @@ class Calculator(tk.Frame):
         power_button = tk.Button(options_position, text="^", command=self._power, borderwidth=2, relief="raised")
         root_button = tk.Button(options_position, text="sqrt", command=self._root, borderwidth=2, relief="raised")
 
+        zero_button = tk.Button(options_position, text="0", command=self._root, borderwidth=2, relief="raised")
+        one_button = tk.Button(options_position, text="1", command=self._root, borderwidth=2, relief="raised")
+        two_button = tk.Button(options_position, text="2", command=self._root, borderwidth=2, relief="raised")
+        three_button = tk.Button(options_position, text="3", command=self._root, borderwidth=2, relief="raised")
+        four_button = tk.Button(options_position, text="4", command=self._root, borderwidth=2, relief="raised")
+        five_button = tk.Button(options_position, text="5", command=self._root, borderwidth=2, relief="raised")
+        six_button = tk.Button(options_position, text="6", command=self._root, borderwidth=2, relief="raised")
+        seven_button = tk.Button(options_position, text="7", command=self._root, borderwidth=2, relief="raised")
+        eight_button = tk.Button(options_position, text="8", command=self._root, borderwidth=2, relief="raised")
+        nine_button = tk.Button(options_position, text="9", command=self._root, borderwidth=2, relief="raised")
+        dot_button = tk.Button(options_position, text=".", command=self._root, borderwidth=2, relief="raised")
+
         history_button = tk.Button(menu_position, text="History", command=self._root, borderwidth=2, relief="raised")
         back_button = tk.Button(menu_position, text="Go back", command=lambda: self._close(), borderwidth=2, relief="ridge")
 
