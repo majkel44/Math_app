@@ -85,6 +85,9 @@ class Calculator(tk.Frame):
         back_button.grid(row=0, column=1, padx=15, pady=10)
 
 
+    def update_input(self,x):
+        self.input += self.input + str(x)
+
     def _close(self):
         self.pack_forget()
         self.main_menu.pack(expand=True, fill="both")
